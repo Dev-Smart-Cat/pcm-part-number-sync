@@ -1,5 +1,5 @@
 # Ignoring the virtual environment
-venv/
+.venv/
 
-# Ignoring the notebook used for testing methods
-test.ipynb
+# ignoring pycache
+__pycache__/
