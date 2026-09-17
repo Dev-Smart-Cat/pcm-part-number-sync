@@ -1,0 +1,29 @@
+# Display the pipeline name on GitHub Actions
+name: Configure the deployment pipeline
+
+# rubs when pushed to main on a PR
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        # The job fetch a GitHub ID token
+        permissions:
+            id-token: write
+            contents: read
+
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/checkout@v3
+
+          - id: 'auth'
+            name: 'Authenticate to Google Cloud'
+            uses: 'google-github-actions/auth@v1'
+            with:
+                create_credentials_file: true
+                workload_identity_provider: 'projects/177874397418/locations/global/workloadIdentityPools/github-actions-poo/providers/github-hardware-extractor-wif'
+                service_account: 'partnumber-finder-service@partnumber-finder-486320.iam.gserviceaccount.com'
