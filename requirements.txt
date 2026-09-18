@@ -1,8 +1,4 @@
-gspread
-openpyxl
-jupyter
-pykernel
-streamlit
-st-gsheets-connection
-pandas
-PyInstaller
+gspread==5.12.4
+streamlit==1.64.0
+st-gsheets-connection==0.1.0
+pandas==3.0.6
