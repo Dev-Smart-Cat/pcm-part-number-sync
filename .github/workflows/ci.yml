@@ -1,0 +1,39 @@
+name: CI Pipeline
+
+
+# run when pushed to main to main and when the 
+# pull request targets the main branches 
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            # step 1: download the code onto GibtHub VM
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            # install Python on GitHub VM
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.14"
+                cache: "pip"
+            
+            # install project's dependencies
+            - name: Install dependencies
+              run: pip install -r requirements.txt
+
+            # sintax check
+            - name: Check Python syntax
+              run: |
+               python -m py_compile main.py
+               python -m py_compile utils.py
+               echo "All files passed syntax check"
+
+        
