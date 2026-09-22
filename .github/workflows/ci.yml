@@ -29,11 +29,18 @@ jobs:
             - name: Install dependencies
               run: pip install -r requirements.txt
 
+            - name: Install framework tests
+              run: pip install -r requirements_dev.txt
+
             # sintax check
             - name: Check Python syntax
               run: |
                python -m py_compile main.py
                python -m py_compile utils.py
                echo "All files passed syntax check"
+
+            # lint the code using flake8 to check code style and issues
+            - name: Lint with flake8
+              run: flake8 . --max-line-length=120 --exclude=.git
 
         

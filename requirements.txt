@@ -1,4 +1,4 @@
 gspread==5.12.4
+pandas==3.0.6
 streamlit==1.64.0
 st-gsheets-connection==0.1.0
-pandas==3.0.6
