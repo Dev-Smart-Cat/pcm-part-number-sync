@@ -79,3 +79,6 @@ try:
 
     # Call the function to convert the worksheet to dataframe after updating hdw column
     df_updated = create_df(worksheet_updated)
+
+except Exception as e:
+    print(f'Error: {e}')
