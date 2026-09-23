@@ -53,9 +53,9 @@ def extract_update_cell(df, pattern, worksheet):
 
     for idx, string in df['OLD PART NUMBER(S)'].items():
         # Values from col 'OLD PART NUMBER(S)'
-        old_pn_cell = f'E{idx+2}'
-        cell_value_to_str = str(string)
-        matches = re.findall(pattern, cell_value_to_str)
+        old_pn_cell = f'E{idx+2}'                           # cell from column OLD PART NUMBER(S), e.g E2
+        cell_value_to_str = str(string)                     # convert the part number extracted to string
+        matches = re.findall(pattern, cell_value_to_str)    # find part number matches based on the pattern
 
         # Values from col 'HW'
         hdw_cell = f'D{idx+2}'
