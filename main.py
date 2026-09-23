@@ -50,7 +50,7 @@ try:
 
         Return:
             regex: Pattern after adding the part number inputted + regex.
-            The regex are used to extract the part inputted along with its variations. 
+            The regex are used to extract the part inputted along with its variations.
             For example:
             inputted part number: 1234
             extracted part numbers: 1234AA, 1234AB, 1234AC
