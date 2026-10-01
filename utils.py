@@ -14,8 +14,7 @@ audience = 'https://iam.googleapis.com/projects/177874397418/locations/global/' 
 
 class CustomerSubjectTokenSupplier(identity_pool.SubjectTokenSupplier):
 
-    def get_subject_token(self, context, request):
-        audience = context.audience
+    def get_subject_token(self, request):
         try:
             url = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]
             token = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]
