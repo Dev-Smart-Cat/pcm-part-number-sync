@@ -7,7 +7,7 @@ from google.auth import exceptions
 from google.auth import identity_pool
 
 
-audience = 'https://iam.googleapis.com/projects/177874397418/locations/global/' \
+audience = '///iam.googleapis.com/projects/177874397418/locations/global/' \
     'workloadIdentityPools/github-actions-poo/providers/' \
     'github-hardware-extractor-wif'
 
@@ -17,7 +17,7 @@ class CustomerSubjectTokenSupplier(identity_pool.SubjectTokenSupplier):
     def get_subject_token(self, context, request):
         audience = context.audience
         try:
-            url = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"] + f"audience{audience}"
+            url = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"] + f"&audience={audience}"
             token = os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]
             response = request(
                 url=url,
