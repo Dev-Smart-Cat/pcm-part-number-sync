@@ -7,7 +7,7 @@ from google.auth import exceptions
 from google.auth import identity_pool
 
 
-audience = '///iam.googleapis.com/projects/177874397418/locations/global/' \
+audience = '//iam.googleapis.com/projects/177874397418/locations/global/' \
     'workloadIdentityPools/github-actions-poo/providers/' \
     'github-hardware-extractor-wif'
 
