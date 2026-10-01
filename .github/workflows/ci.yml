@@ -11,40 +11,55 @@ on:
 
 jobs:
     build:
+  
+        # the job fectch a GitHub ID token
+        permissions:
+          id-token: write
+          contents: read
         runs-on: ubuntu-latest
 
         steps:
-            # step 1: download the code onto GibtHub VM
-            - name: Checkout repository
-              uses: actions/checkout@v4
+          - uses: actions/checkout@v3
 
-            # install Python on GitHub VM
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                python-version: "3.14"
-                cache: "pip"
+          - id: 'auth'
+            name: "Authenticate to Google Cloud"
+            uses: 'google-github-actions/auth@v1'
+            with:
+                create_credentials_file: true
+                workload_identity_provider: 'projects/177874397418/locations/global/workloadIdentityPools/github-actions-poo/providers/github-hardware-extractor-wif'
+                service_account: 'partnumber-finder-service@partnumber-finder-486320.iam.gserviceaccount.com'
+        
+          # step 1: download the code onto GibtHub VM
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          # install Python on GitHub VM
+          - name: Set up Python
+            uses: actions/setup-python@v5
+            with:
+              python-version: "3.14"
+              cache: "pip"
             
-            # install project's dependencies
-            - name: Install dependencies
-              run: pip install -r requirements.txt
+          # install project's dependencies
+          - name: Install dependencies
+            run: pip install -r requirements.txt
 
-            - name: Install framework tests
-              run: pip install -r requirements_dev.txt
+          - name: Install framework tests
+            run: pip install -r requirements_dev.txt
 
-            # sintax check
-            - name: Check Python syntax
-              run: |
-               python -m py_compile main.py
-               python -m py_compile utils.py
-               echo "All files passed syntax check"
+          # sintax check
+          - name: Check Python syntax
+            run: |
+              python -m py_compile main.py
+              python -m py_compile utils.py
+              echo "All files passed syntax check"
 
-            # lint the code using flake8 to check code style and issues
-            - name: Lint with flake8
-              run: flake8 . --max-line-length=120 --exclude=.git
+          # lint the code using flake8 to check code style and issues
+          - name: Lint with flake8
+            run: flake8 . --max-line-length=120 --exclude=.git
 
-            # functions test from utils.py with pytest framework
-            - name: Run pytest
-              run: pytest test_utils.py -v
+          # functions test from utils.py with pytest framework
+          - name: Run pytest
+            run: pytest test_utils.py -v
 
         
