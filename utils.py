@@ -22,7 +22,7 @@ class CustomerSubjectTokenSupplier(identity_pool.SubjectTokenSupplier):
             response = request(
                 url=url,
                 method="GET",
-                headers={"Authorizatin": f"Bearer {token}"}
+                headers={"Authorization": f"Bearer {token}"}
             )
             return json.loads(response.data)["value"]
         except Exception as e:
