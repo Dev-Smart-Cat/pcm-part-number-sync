@@ -8,7 +8,7 @@ from google.auth import identity_pool
 
 
 audience = '//iam.googleapis.com/projects/177874397418/locations/global/' \
-    'workloadIdentityPools/github-actions-poo/providers/' \
+    'workloadIdentityPools/github-actions-pool/providers/' \
     'github-hardware-extractor-wif'
 
 
