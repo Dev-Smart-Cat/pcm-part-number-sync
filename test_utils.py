@@ -5,6 +5,7 @@ from utils import CustomerSubjectTokenSupplier, audience
 
 def test_identity_pool_credentials_refresh_succeeds():
     supplier = CustomerSubjectTokenSupplier()
+    
     credentials = identity_pool.Credentials(
         audience=audience,
         subject_token_type="urn:ietf:params:oauth:token-type:jwt",
